@@ -1,0 +1,84 @@
+{%extends "base_generic.html"%} {% block sidebar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="menu-collapse">
+      <ul class="nav navbar-nav" style="float : right;font-size:20px;">
+              <li><a href="{% url 'dashboard' %}">Home</a></li>
+              <li><a href="{% url 'article' %}">All Articles</a></li>
+              <li><a href="{% url 'photo' %}">All Photos</a></li>
+              <li><a href="{% url 'upload' %}">Photo Upload</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{%endblock%} {% block content %}
+<h1>Photo Blog Home</h1>
+<hr/>
+<p><h4>Welcome <i>{{request.session.username}}</i> to <em>Photo Blog!</h4></em></p>
+
+<h2>Information</h2>
+<hr/>
+<p><h4>The blog has the following counts:</h4></p><hr/>
+<ul>
+    <li><strong>Number of Photos:</strong> <h4>{{ num_pics }}</h4></li>
+    <li><strong>Number of Articles:</strong> <h4>{{ num_articles }}</h4></li>
+    <li><strong>Number of Photographers:</strong><h4>{{ num_photographers }}</h4></li>
+    <li><strong>List of Photographers:</strong>
+        <div>
+            <ol>
+                {% for i in list_of_photographers %}
+
+                <li><h4>{{ i }}</h4></li>
+
+                {%endfor%}
+            </ol>
+        </div>
+    </li>
+</ul>
+<br/>
+<h3>Workshops to participate:</h3><br/>
+<table border="3px" style="width : 100%;margin-left : 41px;">
+    <tr>
+        <th>Workshop Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Start Date</th>
+        <th>Duration</th>
+        <th>Organisation</th>
+    </tr>
+    {% for i in workshop %}
+    <tr>
+        <td>{{i.w_id}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.start_date}}</td>
+        <td>{{i.duration}}</td>
+        <td>{{i.organisation}}</td>
+    </tr>
+    {%endfor%}
+</table><br/><hr/>
+<h3>Camera Database</h3><br/>
+<table border="3px" style="width : 100%;margin-left : 41px;">
+    <tr>
+        <th>Camera Id</th>
+        <th>Name</th>
+    </tr>
+    {% for i in camera %}
+    <tr>
+        <td>{{i.c_id}}</td>
+        <td>{{i.name}}</td>
+    </tr>
+    {%endfor%}
+</table>
+
+{% endblock %}

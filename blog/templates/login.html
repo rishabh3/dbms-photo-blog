@@ -1,0 +1,32 @@
+{%extends "base_generic.html"%}{%block content%}
+<br/>
+<br/>
+<h2>Login Form</h2>
+<hr/>
+<div>
+<div class="container" >
+    <h4>{{form_error}}{{logged_in}}</h4>
+    <form action="{% url 'authenticateUser'%}" method="post" class="form-horizontal">
+        {% csrf_token %} {% for f in form%}
+        <div class="form-group">
+            <label class="control-label col-sm-3">{{f.label}} :</label>
+            <div class="col-sm-3">
+                {{f}}<br/>
+            </div>
+        </div>
+        {%endfor%}
+        <br/>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Login" class="btn btn-default" style="margin-left : 135px;">
+        </div><br/><br/><br/>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-9" style="margin-left : 350px;">
+                <a href="{% url 'index'%}"><h3>Back</h3></a>
+        </div>
+        </div>
+    </form>
+
+</div>
+</div>
+{%endblock%}

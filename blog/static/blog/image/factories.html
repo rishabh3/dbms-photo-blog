@@ -1,0 +1,79 @@
+<html>
+<head><Welcome to NSB></head>
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="countdown.js"></script>
+<link rel="stylesheet" type="text/css" href="styling.css" />
+<script>
+$(document).ready(function() {
+    $('.image-frame').hover(function(){
+		$('.image-caption',this).slideToggle('slow');
+	}, function(){
+		$('.image-caption',this).slideToggle('slow');
+    });
+});
+</script>
+
+</head>
+<body>
+
+<nav class="navbar">
+<ul>
+<li><a href="home.php">Home</a></li>
+<li><a href="help.html">Help</a></li>
+<li><a href="about.html">About us</a></li>
+<li><a href="contact.html">Contact us</a></li>
+</ul>
+</nav>
+
+<table class="outer" cellpadding="15px">
+	<tr><td>
+	<div class="login">
+  <form action="gotoUseraccount.php">
+    <label for="uname">Username</label><br>
+    <input type="text" id="uname" placeholder="Username"><br>
+	<label for="pword">Password</label><br>
+    <input type="text" id="pword" placeholder="Password"><br>
+    <input type="submit" value="Submit">
+   </form>
+	</div>
+	</td>
+	</tr>
+	<tr><td>
+	<div class="check">
+	<form action="checkAvail.php">
+		<label for="acode">Area Code</label><br>
+		<input type="text" id="acode" placeholder="Areacode"><br>
+		<input type="submit" value="Submit">
+	</form>
+	</div>
+	</td></tr>
+</table>
+<table class="second" cellspacing="15px">
+<tr>
+<td class="image-frame"><a href="login.php" style="text-decoration:none;">
+<img src="green1.png"/>
+		<div class="image-caption">
+		  <h2>Easy cleaning of huge wastes</h2>
+			Get locations of dumping areas nearby to your industrial establishments. 	
+		</div></td>
+<td><h3 style="color:green;font-size:25px;">
+Household waste</h3>As your homes, keep clean your city as well. Join team NSB. Register now!</td>
+</tr>
+<tr>
+<td><h3 style="color:green;font-size:25px;">
+Offices and Stores</h3>It is our obligation to keep all our working places clean. After all, they are just preferred after our homes.</td>
+<td><h3 style="color:green;font-size:25px;">
+Other wastes</h3> Let's clean up garbage in the whole country, starting from our Capital!</td>
+</tr>
+</table>
+
+<span style="position:absolute;bottom:7px;right:500px;font-family:'Cooper Black';color:green;">
+The BBMP garbage vehicle will reach your locality in
+<input type="text" id="timer">
+	<script type="text/javascript">
+		timer = new countdown();
+		timer.init();
+	</script>
+</span>
+</body>
+</html>

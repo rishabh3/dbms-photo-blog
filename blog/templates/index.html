@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% block title %}
+    <title>Photo Blog</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'index.js'}"></script>
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+</head>
+
+<body class="parallax">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-2" style="display : inline-block">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid">
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="menu-collapse">
+                          <ul class="nav navbar-nav" style="float : right;font-size:20px;">
+                                  <li><a href="{% url 'signup' %}">SignUp</a></li>
+                                  <li><a href="{% url 'login' %}">LogIn</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </nav>
+            </div>
+                    <h1 style="color : white">Photo Blog</h1><hr/>
+                    <br/>
+                      <p><h3 style="color : white;margin-left : 250px;">Welcome to <em>Photo Blog</em>!</h3></p>
+                      <table colspan="2">
+                      <tr>
+                      <td>
+                      <div class="x">
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/bg1.jpg" alt="Image Not Found!" width="700px" height="450px" >
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/tp1.jpg" width="700px" height="450px">
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/bg3.jpg" width="700px" height="450px">
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/bg5.jpg" width="700px" height="450px">
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/ind.png" width="700px" height="450px">
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/bg6.jpg" width="700px" height="450px">
+                      </div>
+                      <div class="mySlides fade">
+                        <img src="../static/blog/image/bg4.jpg" width="700px" height="450px">
+                        </div>
+                       <div class="mySlides fade">
+                        <img src="../static/blog/image/bg8.jpg" width="700px" height="450px">
+                        </div>
+                      <div style="text-align:center">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                      </div>
+                      </td>
+                      </tr>
+              </table>
+              <script>
+              var slideIndex = 0;
+              showSlides();
+
+              function showSlides() {
+                  var i;
+                  var slides = document.getElementsByClassName("mySlides");
+                  var dots = document.getElementsByClassName("dot");
+                  for (i = 0; i < slides.length; i++) {
+                     slides[i].style.display = "none";
+                  }
+                  slideIndex++;
+                  if (slideIndex> slides.length) {slideIndex = 1}
+                  for (i = 0; i < dots.length; i++) {
+                      dots[i].className = dots[i].className.replace(" active", "");
+                  }
+                  slides[slideIndex-1].style.display = "block";
+                  dots[slideIndex-1].className += " active";
+                  setTimeout(showSlides, 3000); // Change image every 3 seconds
+              }
+              </script>
+
+        </div>
+
+
+</body>
+
+</html>

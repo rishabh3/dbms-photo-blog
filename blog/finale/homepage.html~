@@ -1,0 +1,227 @@
+<html>
+<head>
+<title>Photo blog</title>
+<style>
+
+*{box-sizing:border-box}
+body {font-family: Verdana,sans-serif;}
+.mySlides {display:none;}
+
+
+.slideshow-container {
+	border: 1px solid #ccc;
+    border-radius: 3px;
+	position:absolute;
+	top:700px;
+	left:23%;
+	margin: auto;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.dot {
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.bcg{background-image:
+     margin:10px;
+       width:98%;
+	   height:50px;
+	   border-radius:5px;
+	   }
+
+
+.title{
+	color:white;
+	display:inline;
+	font-family:'Purisa';
+	font-size:35;
+	text-align:center;
+	font-weight:bold;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url('bg2.jpg');
+	
+
+    /* Full height */
+    height: 500px;
+
+    /* Create the parallax scrolling effect <img src="tp4.png" height="20%" width="15%" alt="not found" >
+*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	
+}
+
+footer{position:relative}
+
+.outer{
+	background:url('blank.png');
+    background-size: cover;
+	height:500px;
+	width:70%;
+	 position: absolute;
+	  top: 30%;
+	  left: 15%;
+	  right: 15%;
+	
+	border: 3px ridge rgb(2,9,0);
+	border-radius: 4px;
+}
+
+input[type=text], select {
+    width: 200px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 100px;
+    background-color: teal;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: grey;
+}
+
+.login {
+	width:300px;
+	height:250px;
+	position:absolute;
+	top:20%;
+	left:40%;
+    border-radius: 5px;
+    background-color: black;
+    padding: 15px;
+}
+
+.login label{
+	color:white;
+	font-family:'Waree';
+	font-size:15px;
+}
+
+
+</style>
+
+</head><body class="parallax">
+
+
+<h1 class="title" style="position:absolute;top:10%;left:35%;">Inspiro Delegato</h1>
+
+<h3 style="position:absolute;
+		   top:20%;
+		   left:25%;
+		   color:white;
+		   font-family:'Waree';
+		   font-size:15px;">
+		   Welcome! Please enter your login id and password.</h3>
+
+<table class="outer" cellpadding="15px">
+	<tr><td>
+	<div class="login">
+  <form action="gotoUseraccount.php">
+    <label for="uname">Username</label><br>
+    <input type="text" id="uname" placeholder="Username"><br>
+	<label for="pword">Password</label><br>
+    <input type="text" id="pword" placeholder="Password"><br>
+    <input type="submit" value="Submit">
+   </form>
+	</div>
+	</td>
+	</tr>
+</table>
+
+<table colspan="2">
+<tr>
+<td>
+<div class="slideshow-container">
+<div class="mySlides fade">
+  <img src="bg1.jpg" width="700px" height="450px" >
+</div>
+<div class="mySlides fade">
+  <img src="tp1.jpg" width="700px" height="450px">
+</div>
+<div class="mySlides fade">
+  <img src="bg3.jpg" width="700px" height="450px">
+</div>
+<div class="mySlides fade">
+  <img src="bg5.jpg" width="700px" height="450px">
+</div>
+<div class="mySlides fade">
+  <img src="ind.png" width="700px" height="450px">
+</div>
+<div class="mySlides fade">
+  <img src="bg6.jpg" width="700px" height="450px">
+</div>
+<div class="mySlides fade">
+  <img src="bg4.jpg" width="700px" height="450px">
+  </div>
+ <div class="mySlides fade">
+  <img src="bg8.jpg" width="700px" height="450px">
+  </div>
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+</td>
+</tr>
+</table>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
+</script>
+
+</body>
+</html>

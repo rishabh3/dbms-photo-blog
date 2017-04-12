@@ -1,0 +1,239 @@
+ul {
+	position: absolute;
+	margin-top: 0;
+	top: 10px;
+	left: 15%;
+	right: 15%;
+	width: 57%;
+	height:75px;
+	border:2px solid lightgrey;
+	padding:10px;
+	border-radius:5px;
+	z-index: 9999;
+    background: linear-gradient(to right, rgba(165,228,170,1), rgba(53,117,55,1));
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); 
+	list-style-type: none;
+}
+
+li {
+    float: left;
+}
+
+
+li a {
+	color:white;
+    display: block;
+	font-size:25px;
+	font-family:'Microsoft Phagspa';
+    text-align: center;
+    padding: 20px 50px ;
+    text-decoration: none;
+	transition:all 0.7s ease-in-out;	
+}
+li a:hover {
+	background-color:rgb(36,96,44);
+	border:1px solid black;
+	border-radius:4px;
+}
+
+.pagename{
+	position:absolute;
+	text-align:center;
+	top:135px;
+	left:25%;
+	font-size:30px;
+	font-family:'Copperplate Gothic';
+	color:green;
+}
+
+.outer{
+	background:url('hold.png');
+	height:350px;
+	width:620px;
+	position:absolute;
+	top:700px;
+	left:80px;
+	border: 3px ridge grey;
+	border-radius: 4px;
+}
+
+.indus{
+	background:url('ind.png');
+	height:150px;
+	width:620px;
+	position:absolute;
+	top:200px;
+	left:100px;
+	border: 3px ridge grey;
+	border-radius: 4px;
+}
+
+.office{
+	background:url('off5.png');
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:150px;
+	width:620px;
+	position:absolute;
+	top:200px;
+	left:100px;
+	border: 3px ridge grey;
+	border-radius: 4px;
+}
+
+.gen{
+	background:url('gen1.png');
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:150px;
+	width:620px;
+	position:absolute;
+	top:200px;
+	left:100px;
+	border: 3px ridge grey;
+	border-radius: 4px;
+}
+.second2 {
+	height:200px;
+	max-width:470px;
+	position:absolute;
+	top:185px;
+	right:130px;
+}
+.image-frame {
+	float: left;
+	color: brown;
+	font-family: 'Microsoft PhagsPa';
+	border:1px solid lightgrey;
+	border-radius:4px;
+	padding:3px;
+}
+.image-caption {
+	display: none;
+	position: absolute;
+	width:269px;
+	padding: 5px;
+	background:#cae5c1;
+	opacity: 0.8;
+}
+
+.image-frame1 {
+	float: left;
+	color: rgb(176,37,17);
+	font-family: 'Candara';
+	border:1px solid lightgrey;
+	border-radius:4px;
+	padding:3px;
+}
+.image-caption1 {
+	display: none;
+	position: absolute;
+	width:390px;
+	padding: 5px;
+	background:#cae5c1;
+	opacity: 0.8;
+}
+
+.medi{
+	background:url('med3.png');
+	height:150px;
+	width:620px;
+	position:absolute;
+	top:200px;
+	left:100px;
+	border: 3px ridge grey;
+	border-radius: 4px;
+}
+
+input[type=text], select {
+    width: 200px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 100px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.login {
+	width:200px;
+	height:175px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 15px;
+}
+.login label{
+	font-family:Constantia;
+	font-size:15px;
+}
+
+.check {
+	width:200px;
+	height:110px;
+	border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 15px;
+}
+.check label{
+	font-family:Constantia;
+	font-size:15px;
+}
+
+.second {
+	height:200px;
+	max-width:450px;
+	position:absolute;
+	top:185px;
+	right:100px;
+}
+.second td {
+	width:200px;
+	height:150px;
+	color:green;
+	background-color:lightgrey;
+	font-family:'Segoe UI Semibold';
+	font-size:15px;
+	border:3px double grey;
+	padding:15px;
+	border-radius:5px;
+	word-wrap:break-word;
+	transition:all 0.7s ease-in;	
+}
+.second td:hover{
+	transform:scale(1.1);
+	text-shadow:0 5px 10px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); 
+}
+
+
+#timer{
+		text-align:center;
+		color:white;
+		font-size:27px;
+		font-family: 'Candara';
+		width:150px;
+		height:50px;
+		border:3px groove grey;
+		border-radius: 5px;
+		background: linear-gradient(to right, rgba(165,228,170,1), rgba(53,117,55,1));
+		transition:all 0.7s ease-in;
+}
+#timer:hover{
+	transform:scale(1.1);
+	text-shadow:0 5px 10px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); 
+}
