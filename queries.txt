@@ -1,0 +1,308 @@
+\c photodb
+You are now connected to database "photodb" as user "postgres".
+--
+--Simple => no joins, no nesting :
+--
+--
+--Select all the users with their first_name,dob from the users who are female
+--
+select first_name, dob
+from blog_userprofile
+where gender = 'F';
+ first_name |    dob
+------------+------------
+ Reshma     | 25/02/1997
+ Priyanka   | 23/03/1997
+ Laney      | 12/03/1978
+ Preetika   | 15/04/1997
+ Niriksha   | 16/09/1996
+ Rgbhat     | 23/07/1997
+ priyanka   | 23/03/1997
+(7 rows)
+
+--
+--Select all the genre name  from the genres
+--
+select name
+from blog_genre;
+   name
+-----------
+ Wedding
+ Waterfall
+ Animals
+ Mountains
+ Baby
+ Festival
+ Celebrity
+ Birthday
+ Flower
+ Birds
+(10 rows)
+
+--
+--Select caption from the photos where file_type = JPEG
+--
+select caption
+from blog_photo
+where file_type = 'jpg';
+  caption
+------------
+ Oh My God!
+ Alps!
+ jog falls!
+
+ Birthday
+
+
+ don
+ wow
+(9 rows)
+
+--
+--Select name and price of all the plans
+--
+select name, price
+from blog_plan;
+        name        |  price
+--------------------+---------
+ Basic Plan         | 2000.00
+ Medium Plan        | 5000.00
+ Image and Context  | 3000.00
+ Studio Photography | 7000.00
+(4 rows)
+
+--
+--Select name and price for all the workshop
+--
+select name, price
+from Workshop;
+psql:queries.sql:31: ERROR:  relation "workshop" does not exist
+LINE 2: from Workshop;
+             ^
+--
+--Select caption and location of photos having  number_of_downloads < 10
+--
+select caption,location
+from blog_photo
+where number_of_downloads < 10;
+  caption   | location
+------------+-----------
+ jog falls! | karnataka
+ Naughty    | Bangalore
+ Birthday   | Delhi
+            | Bangalore
+ omg!cute   | Bangalore
+            | Delhi
+            | Bangalore
+ wow        | Bengaluru
+ don        | bangalore
+ wow        | Bangalore
+(10 rows)
+
+--
+--Select name and organisation from Workshop where price < 200
+--
+select name, organisation
+from blog_workshop
+where price < 300;
+         name         | organisation
+----------------------+--------------
+ B&W Film Photo II    | piccasa
+ Advanced Photography | pixels
+(2 rows)
+
+--
+--Medium => cross joins, nesting :
+--
+--
+--Select name ,requirement,price for all the workshop
+--
+select name, requirement, price
+from blog_workshop W, blog_workshop_requirements R
+where W.w_id = R.w_id_id;
+             name              |          requirement           | price
+-------------------------------+--------------------------------+--------
+ B&W Film Photo II             | DSLR                           | 299.00
+ B&W Film Photo II             | Tripod Stand                   | 299.00
+ Advanced Photography          | Laptop                         | 250.00
+ Advanced Photography          | DSLR                           | 250.00
+ Professional Strategies Photo | DSLR                           | 399.00
+ Professional Strategies Photo | Laptop                         | 399.00
+ B&W Film Photo II             | Models                         | 299.00
+ Advanced Photography          | Picassa                        | 250.00
+ Digital Photography 1         | Digital Camera                 | 499.00
+ Digital Photography 1         | Basic Knowledge of Photography | 499.00
+ Night Photography             | Focusing Light                 | 349.00
+ Night Photography             | Camera with Night View         | 349.00
+(12 rows)
+
+--
+--Select camera features and genre name for all the photographs
+--
+select feature, G.name
+from blog_photo P, blog_genre G, blog_camera C, blog_camerafeatures F
+where C.name = 'DSLR' and c_id = F.camera_id_id and c_id = P.camera_id_id and P.gen_id_id = G.gen_id;
+       feature       |   name
+---------------------+----------
+ 25X zoom            | Birthday
+ Long Battery life   | Birthday
+ Dust removal system | Birthday
+ 25X zoom            | Flower
+ Long Battery life   | Flower
+ Dust removal system | Flower
+(6 rows)
+
+--
+--Select all the plans which have a duration of 30 days and price is less than 250
+--
+(select name, features, price
+from blog_plan P, blog_plan_features F
+where P.plan_id = F.plan_id_id and P.duration = '30 days')
+intersect
+(select name, features, price
+from blog_plan P, blog_plan_features F
+where P.plan_id = F.plan_id_id and P.price < 8000);
+        name        |        features         |  price
+--------------------+-------------------------+---------
+ Studio Photography | Unlimited Editor access | 7000.00
+ Studio Photography | Unlimited Storage       | 7000.00
+(2 rows)
+
+--
+--Select the user and their plans
+--
+select U.first_name, P.name
+from blog_subscribes_to S, blog_userprofile U, blog_plan P where s.user_id_id = U.u_id and P.plan_id = S.plan_id_id ;
+ first_name |        name
+------------+--------------------
+ Priyanka   | Image and Context
+ Reshma     | Basic Plan
+ Tony       | Studio Photography
+ Laney      | Studio Photography
+ Franklin   | Basic Plan
+ Rishabh    | Basic Plan
+ Niriksha   | Studio Photography
+ Laney      | Image and Context
+ Peter      | Image and Context
+ Reuben     | Studio Photography
+ Rishabh    | Image and Context
+ Preetika   | Medium Plan
+ Nikhil     | Studio Photography
+ Rishabh    | Studio Photography
+(14 rows)
+
+--
+--Select the photo_id,location and rank of the genre they belong.
+--
+select photo_id, location, G.rank
+from blog_photo P, blog_genre G
+where P.gen_id_id = G.gen_id and G.rank > 4 order by G.rank;
+ photo_id | location  | rank
+----------+-----------+------
+ pixels   | Bangalore |    5
+ ph09     | Bangalore |    5
+ ph123    | bangalore |    5
+ pixilite | Bangalore |    5
+ pixile   | Delhi     |    5
+ ph11     | Delhi     |    5
+(6 rows)
+
+--
+--Select the names,email_id and phone number of users whose pictures have maximum like
+--
+select first_name,email_id,phone from blog_userprofile where u_id in(select user_id_id from blog_review where number_of_likes in (select max(number_of_likes) from blog_review));
+ first_name |      email_id      |   phone
+------------+--------------------+------------
+ Vivan      | viga1991@gmail.com | 9998887770
+(1 row)
+
+--
+--Select the names of user who are intrested in genre which has max ranking
+--
+select first_name,m_init,last_name from blog_userprofile where u_id in(select user_id_id from blog_intrested_in where genre_id_id in (select gen_id from blog_genre where blog_genre.rank in(select max(blog_genre.rank) from blog_genre)));
+ first_name | m_init | last_name
+------------+--------+-----------
+ Niriksha   |        | Kunder
+ Priyanka   | T      | S
+ Preetika   | P      | Rathod
+ Laney      | S      | Griner
+(4 rows)
+
+
+-- Difficult => EVERYTHING!!!
+--
+--List all the workshop which has maximum number of participants
+--
+create view test as select w_id_id , count(user_id_id) as c from blog_participates_in group by w_id_id;
+psql:queries.sql:93: ERROR:  relation "test" already exists
+select name from blog_workshop where w_id in (select w_id_id from test where c in (select max(c) from test));
+             name
+-------------------------------
+ Professional Strategies Photo
+(1 row)
+
+--
+--List the popular plan and its features and its duration
+--
+create view test1 as select plan_id_id , count(user_id_id) as c from blog_subscribes_to group by plan_id_id;
+psql:queries.sql:98: ERROR:  relation "test1" already exists
+select distinct name,duration,features from blog_plan,blog_plan_features where plan_id_id = plan_id and plan_id in (select plan_id_id from test1 where c in (select max(c) from test1));
+        name        | duration |        features
+--------------------+----------+-------------------------
+ Studio Photography | 30 days  | Unlimited Storage
+ Studio Photography | 30 days  | Unlimited Editor access
+(2 rows)
+
+--
+--List the most followed user with their personal details
+--
+create view test2 as select followed_id_id , count(follower_id_id) as f from blog_follows group by followed_id_id;
+psql:queries.sql:103: ERROR:  relation "test2" already exists
+select username,first_name,last_name,phone,email_id,dob from blog_userprofile where u_id in (select followed_id_id from test2 where f in(select max(f) from test2));
+ username | first_name | last_name |   phone    |     email_id     |    dob
+----------+------------+-----------+------------+------------------+------------
+ resh     | Reshma     | Bhat      | 8145673908 | rgbhat@gmail.com | 25/02/1997
+(1 row)
+
+--
+--List the user who has got most number of reads for his article and list the genre in which he has taken photographs of.
+--
+select foobar.name,bup.username,bup.first_name,bup.last_name,bup.dob from blog_userprofile as bup natural join (select bar.name,bar.u_id from (select name,user_id_id as u_id from blog_genre join (select distinct user_id_id,genre_id_id from blog_userprofile join blog_intrested_in on user_id_id = u_id) as foo on foo.genre_id_id = gen_id) as bar natural join (select u_id from blog_userprofile where u_id in(select user_id_id from blog_article where number_of_reads in(select max(number_of_reads) from blog_article ))) as foo) as foobar;
+ name  | username | first_name | last_name |    dob
+-------+----------+------------+-----------+------------
+ Birds | kirik    | Niriksha   | Kunder    | 16/09/1996
+ Baby  | kirik    | Niriksha   | Kunder    | 16/09/1996
+(2 rows)
+
+--
+--list the firstname and his/her comments .
+--
+select first_name,comments from blog_userprofile join (select user_id_id,comments from blog_review join blog_comments on review_id_id=review_id) as foo on user_id_id = u_id;
+ first_name |   comments
+------------+---------------
+ Vivan      | Nice
+ Vivan      | Amazing
+ Franklin   | Great Amazing
+ Peter      | Very Nice
+ Laney      | Nice
+(5 rows)
+
+--
+--List all the articles,number_of_reads and the its author which is written for a photo of genre starting with B.
+--
+select username,article_id,article,number_of_reads from blog_userprofile join (select article_id,article,number_of_reads,user_id_id from blog_article where photo_id_id in(select photo_id as photo_id_id from blog_photo where gen_id_id in (select gen_id from blog_genre where name like 'B%'))) as bar on user_id_id = u_id;
+ username | article_id |             article             | number_of_reads
+----------+------------+---------------------------------+-----------------
+ rdx      | art01      | article/2017/03/19/art1         |               1
+ frank    | art03      | article/2017/03/20/art3         |               3
+ kirik    | art07      | article/2017/03/20/art6_5Ys8kmg |               7
+(3 rows)
+
+--
+--List all the photos of type jpg that were shot using a dslr and having maximum number of reviews
+--
+select distinct p.photo_id from blog_photo p, blog_review r,blog_review_about a,blog_camera c where p.file_type = 'jpg' and c.name = 'dslr' and c.c_id = p.camera_id_id and a.p_id_id = p.photo_id and r.review_id = a.rev_id_id and r.review_id in ( select review_id from blog_review where number_of_share in(select max(number_of_share) from blog_review ));
+ photo_id
+----------
+ ph06
+(1 row)

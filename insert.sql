@@ -253,46 +253,12 @@ CREATE TABLE blog_article (
     article_id character varying(10) NOT NULL,
     number_of_reads integer NOT NULL,
     article character varying(100) NOT NULL,
-    user_id_id character varying(10) NOT NULL,
+    user_id_id character varying(30) NOT NULL,
     photo_id_id character varying(10) NOT NULL
 );
 
 
 ALTER TABLE blog_article OWNER TO rishabh;
-
---
--- Name: blog_belongsto; Type: TABLE; Schema: public; Owner: rishabh
---
-
-CREATE TABLE blog_belongsto (
-    bt_id integer NOT NULL,
-    gen_id_id character varying(10) NOT NULL,
-    photo_id_id character varying(10) NOT NULL
-);
-
-
-ALTER TABLE blog_belongsto OWNER TO rishabh;
-
---
--- Name: blog_belongsto_bt_id_seq; Type: SEQUENCE; Schema: public; Owner: rishabh
---
-
-CREATE SEQUENCE blog_belongsto_bt_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE blog_belongsto_bt_id_seq OWNER TO rishabh;
-
---
--- Name: blog_belongsto_bt_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: rishabh
---
-
-ALTER SEQUENCE blog_belongsto_bt_id_seq OWNED BY blog_belongsto.bt_id;
-
 
 --
 -- Name: blog_camera; Type: TABLE; Schema: public; Owner: rishabh
@@ -301,7 +267,7 @@ ALTER SEQUENCE blog_belongsto_bt_id_seq OWNED BY blog_belongsto.bt_id;
 CREATE TABLE blog_camera (
     c_id character varying(10) NOT NULL,
     name character varying(50) NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -383,7 +349,7 @@ CREATE TABLE blog_editor (
     session_id integer NOT NULL,
     date character varying(12) NOT NULL,
     p_id_id character varying(10) NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -416,8 +382,8 @@ ALTER SEQUENCE blog_editor_session_id_seq OWNED BY blog_editor.session_id;
 
 CREATE TABLE blog_follows (
     id integer NOT NULL,
-    followed_id_id character varying(10) NOT NULL,
-    follower_id_id character varying(10) NOT NULL
+    followed_id_id character varying(30) NOT NULL,
+    follower_id_id character varying(30) NOT NULL
 );
 
 
@@ -464,7 +430,7 @@ ALTER TABLE blog_genre OWNER TO rishabh;
 CREATE TABLE blog_intrested_in (
     id integer NOT NULL,
     genre_id_id character varying(10) NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -497,7 +463,7 @@ ALTER SEQUENCE blog_intrested_in_id_seq OWNED BY blog_intrested_in.id;
 
 CREATE TABLE blog_participates_in (
     id integer NOT NULL,
-    user_id_id character varying(10) NOT NULL,
+    user_id_id character varying(30) NOT NULL,
     w_id_id character varying(10) NOT NULL
 );
 
@@ -537,7 +503,7 @@ CREATE TABLE blog_photo (
     number_of_downloads integer NOT NULL,
     file_type character varying(10) NOT NULL,
     camera_id_id character varying(10) NOT NULL,
-    user_id_id character varying(10) NOT NULL,
+    user_id_id character varying(30) NOT NULL,
     gen_id_id character varying(10) NOT NULL
 );
 
@@ -601,7 +567,7 @@ CREATE TABLE blog_review (
     number_of_likes integer NOT NULL,
     number_of_share integer NOT NULL,
     date character varying(12) NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -652,7 +618,7 @@ CREATE TABLE blog_subscribes_to (
     id integer NOT NULL,
     date character varying(12) NOT NULL,
     plan_id_id character varying(10) NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -684,7 +650,7 @@ ALTER SEQUENCE blog_subscribes_to_id_seq OWNED BY blog_subscribes_to.id;
 --
 
 CREATE TABLE blog_userprofile (
-    u_id character varying(10) NOT NULL,
+    u_id character varying(30) NOT NULL,
     first_name character varying(30) NOT NULL,
     m_init character varying(5),
     last_name character varying(30),
@@ -710,7 +676,7 @@ CREATE TABLE blog_video_tutorials (
     number_of_views integer NOT NULL,
     date date NOT NULL,
     rating integer NOT NULL,
-    user_id_id character varying(10) NOT NULL
+    user_id_id character varying(30) NOT NULL
 );
 
 
@@ -931,13 +897,6 @@ ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: bt_id; Type: DEFAULT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_belongsto ALTER COLUMN bt_id SET DEFAULT nextval('blog_belongsto_bt_id_seq'::regclass);
-
-
---
 -- Name: cf_id; Type: DEFAULT; Schema: public; Owner: rishabh
 --
 
@@ -1146,7 +1105,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 78, true);
 -- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
-INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$30000$qBqOOfzMXL4v$Irglyy8EqFwLlSDz9OciHSx6KdGalrjKvmbCdMkOtJA=', '2017-03-20 07:38:32.994392+00', true, 'rishabh', '', '', 'rishabh97dutt@gmail.com', true, true, '2017-03-19 17:03:35.832884+00');
+INSERT INTO auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) VALUES (1, 'pbkdf2_sha256$30000$qBqOOfzMXL4v$Irglyy8EqFwLlSDz9OciHSx6KdGalrjKvmbCdMkOtJA=', '2017-04-09 15:04:13.437978+00', true, 'rishabh', '', '', 'rishabh97dutt@gmail.com', true, true, '2017-03-19 17:03:35.832884+00');
 
 
 --
@@ -1189,34 +1148,8 @@ SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
 INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art01', 1, 'article/2017/03/19/art1', 'user01', 'ph09');
 INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art02', 2, 'article/2017/03/20/art2', 'user03', 'ph07');
 INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art03', 3, 'article/2017/03/20/art3', 'user05', 'ph09');
-INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art04', 3, 'article/2017/03/20/art4', 'user06', 'ph10');
 INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art05', 4, 'article/2017/03/20/art5', 'user09', 'ph06');
-INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art06', 6, 'article/2017/03/20/art6', 'user15', 'ph04');
 INSERT INTO blog_article (article_id, number_of_reads, article, user_id_id, photo_id_id) VALUES ('art07', 7, 'article/2017/03/20/art6_5Ys8kmg', 'user11', 'ph11');
-
-
---
--- Data for Name: blog_belongsto; Type: TABLE DATA; Schema: public; Owner: rishabh
---
-
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (1, 'gen08', 'ph11');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (2, 'gen01', 'ph03');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (3, 'gen10', 'ph01');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (4, 'gen03', 'ph02');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (5, 'gen04', 'ph04');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (6, 'gen04', 'ph05');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (7, 'gen05', 'ph09');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (8, 'gen01', 'ph06');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (9, 'gen07', 'ph07');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (10, 'gen07', 'ph08');
-INSERT INTO blog_belongsto (bt_id, gen_id_id, photo_id_id) VALUES (11, 'gen02', 'ph10');
-
-
---
--- Name: blog_belongsto_bt_id_seq; Type: SEQUENCE SET; Schema: public; Owner: rishabh
---
-
-SELECT pg_catalog.setval('blog_belongsto_bt_id_seq', 11, true);
 
 
 --
@@ -1224,20 +1157,17 @@ SELECT pg_catalog.setval('blog_belongsto_bt_id_seq', 11, true);
 --
 
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam01', 'DSLR', 'user01');
-INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam02', 'Iphone', 'user12');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam03', 'piixel', 'user03');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam04', 'sony digi3', 'user02');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam05', 'iphone 7s', 'user10');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam06', 'iphone 6s', 'user08');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam07', 'handicam', 'user13');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam08', 'sony digi5', 'user11');
-INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam09', 'sony xs', 'user09');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam10', 'sony xperia', 'user04');
-INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam12', 'samsung note', 'user06');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam13', 'DSLR', 'user07');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam14', 'DSLR mini', 'user14');
-INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam15', 'DSLR', 'user15');
 INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam11', 'samsung galaxy 8', 'user05');
+INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam09', 'dslr', 'user09');
 
 
 --
@@ -1246,8 +1176,6 @@ INSERT INTO blog_camera (c_id, name, user_id_id) VALUES ('cam11', 'samsung galax
 
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (1, 'Dust removal system', 'cam01');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (2, 'Long Battery life', 'cam01');
-INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (3, '13Mp', 'cam02');
-INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (4, '10X zoom', 'cam02');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (5, '13Mp', 'cam03');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (6, '8Mp front', 'cam03');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (7, '15X zoom', 'cam04');
@@ -1266,11 +1194,8 @@ INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (19, '10X 
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (20, 'Long Battery life', 'cam10');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (21, '8Mp front', 'cam11');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (22, '13Mp', 'cam11');
-INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (23, '10Mp', 'cam12');
-INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (24, '5Mp', 'cam12');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (25, '20X zoom', 'cam14');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (26, '20Mp', 'cam14');
-INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (27, '25Mp', 'cam15');
 INSERT INTO blog_camerafeatures (cf_id, feature, camera_id_id) VALUES (28, '25X zoom', 'cam01');
 
 
@@ -1287,8 +1212,6 @@ SELECT pg_catalog.setval('blog_camerafeatures_cf_id_seq', 28, true);
 
 INSERT INTO blog_comments (id, comments, review_id_id) VALUES (1, 'Amazing', 'rv01');
 INSERT INTO blog_comments (id, comments, review_id_id) VALUES (2, 'Nice', 'rv01');
-INSERT INTO blog_comments (id, comments, review_id_id) VALUES (3, 'Great', 'rv04');
-INSERT INTO blog_comments (id, comments, review_id_id) VALUES (4, 'Lovely', 'rv04');
 INSERT INTO blog_comments (id, comments, review_id_id) VALUES (5, 'Nice', 'rv05');
 INSERT INTO blog_comments (id, comments, review_id_id) VALUES (6, 'Great Amazing', 'rv02');
 INSERT INTO blog_comments (id, comments, review_id_id) VALUES (7, 'Very Nice', 'rv03');
@@ -1306,10 +1229,6 @@ SELECT pg_catalog.setval('blog_comments_id_seq', 7, true);
 --
 
 INSERT INTO blog_editor (session_id, date, p_id_id, user_id_id) VALUES (1, '1/1/2017', 'ph03', 'user02');
-INSERT INTO blog_editor (session_id, date, p_id_id, user_id_id) VALUES (2, '12/1/2017', 'ph04', 'user04');
-INSERT INTO blog_editor (session_id, date, p_id_id, user_id_id) VALUES (3, '11/03/2017', 'ph09', 'user12');
-INSERT INTO blog_editor (session_id, date, p_id_id, user_id_id) VALUES (4, '5/06/2016', 'ph11', 'user15');
-INSERT INTO blog_editor (session_id, date, p_id_id, user_id_id) VALUES (5, '12/03/2017', 'ph10', 'user11');
 
 
 --
@@ -1324,25 +1243,16 @@ SELECT pg_catalog.setval('blog_editor_session_id_seq', 5, true);
 --
 
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (1, 'user01', 'user10');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (2, 'user01', 'user12');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (3, 'user01', 'user02');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (4, 'user02', 'user03');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (5, 'user02', 'user08');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (6, 'user02', 'user15');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (7, 'user03', 'user11');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (8, 'user03', 'user13');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (9, 'user03', 'user05');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (10, 'user15', 'user06');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (11, 'user15', 'user07');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (12, 'user12', 'user14');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (14, 'user05', 'user11');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (15, 'user09', 'user12');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (16, 'user04', 'user06');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (17, 'user13', 'user08');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (18, 'user14', 'user10');
 INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (19, 'user10', 'user01');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (20, 'user15', 'user11');
-INSERT INTO blog_follows (id, followed_id_id, follower_id_id) VALUES (21, 'user11', 'user12');
 
 
 --
@@ -1376,17 +1286,13 @@ INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (1, 'gen02', 
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (2, 'gen01', 'user01');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (3, 'gen04', 'user03');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (4, 'gen10', 'user11');
-INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (5, 'gen09', 'user12');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (6, 'gen05', 'user02');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (7, 'gen07', 'user02');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (8, 'gen07', 'user10');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (9, 'gen08', 'user09');
-INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (10, 'gen05', 'user12');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (11, 'gen06', 'user13');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (12, 'gen03', 'user01');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (13, 'gen02', 'user14');
-INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (14, 'gen09', 'user15');
-INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (15, 'gen05', 'user06');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (16, 'gen01', 'user07');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (17, 'gen08', 'user04');
 INSERT INTO blog_intrested_in (id, genre_id_id, user_id_id) VALUES (18, 'gen05', 'user11');
@@ -1412,18 +1318,15 @@ INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (4, 'user05', 
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (5, 'user01', 'wshop3');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (6, 'user07', 'wshop5');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (7, 'user10', 'wshop2');
-INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (8, 'user12', 'wshop2');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (9, 'user04', 'wshop5');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (10, 'user11', 'wshop4');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (11, 'user08', 'wshop3');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (12, 'user09', 'wshop2');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (13, 'user13', 'wshop3');
-INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (14, 'user15', 'wshop5');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (15, 'user14', 'wshop5');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (16, 'user10', 'wshop1');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (17, 'user01', 'wshop3');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (18, 'user05', 'wshop4');
-INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (19, 'user06', 'wshop2');
 INSERT INTO blog_participates_in (id, user_id_id, w_id_id) VALUES (20, 'user01', 'wshop5');
 
 
@@ -1438,17 +1341,20 @@ SELECT pg_catalog.setval('blog_participates_in_id_seq', 20, true);
 -- Data for Name: blog_photo; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
-INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph01', 'Bangalore', 'What a beauty!', 'image/2017/03/19/scarlet_tanager_bird-normal.jpg', 3, 'jpg', 'cam02', 'user12', 'gen10');
-INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph02', 'sunderbans', 'Holy Lord!', 'image/2017/03/19/sumatran_dangerous_tiger-t2.jpg', 5, 'jpg', 'cam14', 'user15', 'gen03');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph03', 'Usa', 'Oh My God!', 'image/2017/03/19/victoria-falls.jpg', 10, 'jpg', 'cam13', 'user01', 'gen01');
-INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph04', 'nepal', 'too huge!', 'image/2017/03/19/Mount_Everest.jpg', 10, 'jpg', 'cam13', 'user15', 'gen04');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph05', 'italy', 'Alps!', 'image/2017/03/19/Nature-Mountain-HD-Wallpapers.jpg', 10, 'jpg', 'cam14', 'user14', 'gen04');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph06', 'karnataka', 'jog falls!', 'image/2017/03/19/waterfalls.jpg', 3, 'jpg', 'cam09', 'user09', 'gen01');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph07', 'Mumbai', '', 'image/2017/03/19/PH13.jpeg', 20, 'jpeg', 'cam03', 'user03', 'gen07');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph08', 'Mumbai', '', 'image/2017/03/19/PH9.jpg', 10, 'jpg', 'cam13', 'user07', 'gen07');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph09', 'Bangalore', 'Naughty', 'image/2017/03/19/PH6.png', 3, 'png', 'cam11', 'user05', 'gen05');
-INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph10', 'Bengaluru', 'Wedding!', 'image/2017/03/19/PH7.jpg', 1, 'jpg', 'cam12', 'user06', 'gen02');
 INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph11', 'Delhi', 'Birthday', 'image/2017/03/19/PH14.jpg', 6, 'jpg', 'cam08', 'user11', 'gen08');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph14', 'Bangalore', '', 'image/2017/04/09/PH11_mEHYo08.jpg', 0, 'jpg', 'cam03', 'user01', 'gen07');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('pixels', 'Bangalore', 'omg!cute', 'image/2017/04/09/PH12.jpeg', 0, 'jpeg', 'cam07', 'user01', 'gen05');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('pixile', 'Delhi', '', 'image/2017/04/09/PH14.jpg', 0, 'jpg', 'cam03', 'user03', 'gen08');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('pixilite', 'Bangalore', '', 'image/2017/04/09/PH10.jpeg', 0, 'jpeg', 'cam06', 'user02', 'gen08');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph21', 'Bengaluru', 'wow', 'image/2017/04/09/11.png', 0, 'png', 'cam01', 'user01', 'gen09');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph123', 'bangalore', 'don', 'image/2017/04/10/bg6.jpg', 0, 'jpg', 'cam01', 'user01', 'gen08');
+INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads, file_type, camera_id_id, user_id_id, gen_id_id) VALUES ('ph124', 'Bangalore', 'wow', 'image/2017/04/10/bg4.jpg', 0, 'jpg', 'cam03', 'User_DonM', 'gen01');
 
 
 --
@@ -1457,7 +1363,6 @@ INSERT INTO blog_photo (photo_id, location, caption, image, number_of_downloads,
 
 INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan1', 'Basic Plan', 2000.00, '5 days');
 INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan2', 'Medium Plan', 5000.00, '10 days');
-INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan3', 'Photo Journalism', 10000.00, '30 days');
 INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan4', 'Image and Context', 3000.00, '7 days');
 INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan5', 'Studio Photography', 7000.00, '30 days');
 
@@ -1466,7 +1371,6 @@ INSERT INTO blog_plan (plan_id, name, price, duration) VALUES ('plan5', 'Studio 
 -- Data for Name: blog_plan_features; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
-INSERT INTO blog_plan_features (f_id, features, plan_id_id) VALUES (1, 'Journalism', 'plan3');
 INSERT INTO blog_plan_features (f_id, features, plan_id_id) VALUES (2, 'Unlimited Editor access', 'plan1');
 INSERT INTO blog_plan_features (f_id, features, plan_id_id) VALUES (3, 'Unlimited Storage', 'plan2');
 INSERT INTO blog_plan_features (f_id, features, plan_id_id) VALUES (4, 'Unlimited Editor access', 'plan5');
@@ -1488,7 +1392,6 @@ SELECT pg_catalog.setval('blog_plan_features_f_id_seq', 6, true);
 INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user_id_id) VALUES ('rv01', 50, 7, '19/03/2017', 'user07');
 INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user_id_id) VALUES ('rv02', 25, 5, '18/03/2017', 'user05');
 INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user_id_id) VALUES ('rv03', 20, 3, '21/03/2017', 'user08');
-INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user_id_id) VALUES ('rv04', 15, 6, '17/03/2017', 'user06');
 INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user_id_id) VALUES ('rv05', 9, 7, '12/03/2017', 'user04');
 
 
@@ -1497,7 +1400,6 @@ INSERT INTO blog_review (review_id, number_of_likes, number_of_share, date, user
 --
 
 INSERT INTO blog_review_about (id, p_date, a_date, art_id_id, p_id_id, rev_id_id) VALUES (1, '12/03/2017', '12/03/2017', 'art01', 'ph06', 'rv01');
-INSERT INTO blog_review_about (id, p_date, a_date, art_id_id, p_id_id, rev_id_id) VALUES (2, '13/03/2017', '15/03/2017', 'art02', 'ph07', 'rv04');
 
 
 --
@@ -1511,21 +1413,15 @@ SELECT pg_catalog.setval('blog_review_about_id_seq', 2, true);
 -- Data for Name: blog_subscribes_to; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (1, '16/04/2017', 'plan3', 'user06');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (2, '23/03/2017', 'plan4', 'user02');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (3, '27/03/2017', 'plan1', 'user03');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (4, '15/08/2017', 'plan5', 'user10');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (5, '1/1/2017', 'plan5', 'user04');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (6, '15/08/2017', 'plan1', 'user05');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (7, '12/1/2017', 'plan1', 'user01');
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (8, '1/06/2017', 'plan3', 'user07');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (9, '20/03/2017', 'plan5', 'user11');
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (10, '2/2/2017', 'plan4', 'user12');
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (11, '25/03/2017', 'plan2', 'user15');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (12, '16/4/2017', 'plan4', 'user04');
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (13, '18/06/2017', 'plan3', 'user09');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (14, '23/03/2017', 'plan4', 'user08');
-INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (16, '1/1/2017', 'plan1', 'user12');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (17, '2/2/2017', 'plan5', 'user13');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (18, '25/03/2017', 'plan4', 'user01');
 INSERT INTO blog_subscribes_to (id, date, plan_id_id, user_id_id) VALUES (19, '1/06/2017', 'plan2', 'user09');
@@ -1549,16 +1445,20 @@ INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user02', 'Priyanka', 'T', 'S', 'prinks', '23/03/1997', 'priyanka@gmail.com', 'pbkdf2_sha256$30000$BbvAJTv4Apfm$4xCyIYhI2PqinPjFoN7k3SzSKciJV++eGXNYtNGHTDY=', 'F', 1234567890);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user04', 'Laney', 'S', 'Griner', 'Lan', '12/03/1978', 'laneygriner@gmail.com', 'pbkdf2_sha256$30000$fg25x7JsnsKY$CmURM7qsw83wHgQuR59RmfEyxTfPHgDRNUczMuFkOuE=', 'F', 9098090980);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user05', 'Franklin', 'P', 'Richards', 'frank', '4/03/1978', 'franklin1000@gmail.com', 'pbkdf2_sha256$30000$L5qbljzz62Id$VVgJBwX2RORmy+psC+qGnm6GGt3+DBpk322sGd+CANU=', 'M', 9540546021);
-INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user06', 'Mary', 'N', 'Crasto', 'mary', '07/12/1990', 'mary76@yahoo.com', 'pbkdf2_sha256$30000$DZ1lDbHkmQVA$ENvFzrZM+cBvG2UI/BJex5R8ziiiQfb32y+oBzW/ITY=', 'F', 9876543210);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user07', 'Vivan', 'G', 'Agnihotri', 'viga', '10/09/1991', 'viga1991@gmail.com', 'pbkdf2_sha256$30000$72lfZtGXj3yh$nEguvKs79DC1rABj7jbVs9kkjzsB0kta71NPs9seTzk=', 'M', 9998887770);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user08', 'Peter', 'J', 'Parker', 'pete', '27/07/1986', 'peterparker@gmail.com', 'pbkdf2_sha256$30000$1alLa6jXnZqB$bvDyO86TtC33ikHW5AnSHHC5z52HToroAbjSaR0QT9Y=', 'M', 6709809891);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user10', 'Tony', '', 'Stark', 'robert', '28/08/1990', 'tonyrobertstark@gmail.com', 'pbkdf2_sha256$30000$7ckyx6LRzE0i$YftvucGHyM436Cr/W9gSBlZiejeG7HZP4zuQ6sk0uxI=', 'M', 8885552413);
-INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user11', 'Niriksha', 'R', 'Kunder', 'kirik', '16/09/1996', 'nirikshakirik@gmail.com', 'pbkdf2_sha256$30000$z3I7KgGYS1B9$kSHpPgGh8Bcj9x2D/jmt0p7Cbc4R809YRm1B48gI4/c=', 'F', 7854987132);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user09', 'Preetika', 'P', 'Rathod', 'preetu', '15/04/1997', 'preeturathod@gmail.com', 'pbkdf2_sha256$30000$CRiUIRCzjktm$qxQLLH8pFGwQdiZP4hhOi0qE5ldtu4QJQbVlAjx024o=', 'F', 9864354321);
-INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user12', 'Rajat', '', 'Nigam', 'Don', '1/07/1996', 'rjrajat@gmail.com', 'pbkdf2_sha256$30000$NoXMnUAGDavd$FuuMi6i5ouSiriD2p0+MhJmGNgw6VWFF1TEZr/qM7go=', 'M', 1233787789);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user13', 'Reuben', '', 'Cherian', 'reuche', '01/01/1997', 'reuche@yahoo.com', 'pbkdf2_sha256$30000$Lwdajuy5Fv1b$VUHlVu4zcSzMqO9BCrnVOnfwff3DeiT/2YxqAqh6eM8=', 'M', 4567898123);
 INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user14', 'Nikhil', '', 'Singh', 'nike', '18/10/1996', 'nikenikhil@gmail.com', 'pbkdf2_sha256$30000$BlGIQQQd9MQX$yQAMbJPldPZn1TQ1Hf34omt8HAdufumt/X52Omkn9/s=', 'M', 1973468257);
-INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user15', 'Prateek', '', 'Mohan', 'Cr', '09/03/1997', 'prateekcr@gmail.com', 'pbkdf2_sha256$30000$cFdW3tk1KBUJ$JgbFpOStG3Dvz1eEEb+6ejN7dFvTn+yApgQSua7yYwg=', 'M', 7689451234);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('user11', 'Niriksha', '', 'Kunder', 'kirik', '16/09/1996', 'nirikshakirik@gmail.com', 'pbkdf2_sha256$30000$RwfbzUiE2azt$lxS+UUX4FyJeT1dRo60cGiap2bOXeXMzUlEO3KT4TQY=', 'F', 7854987132);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_rdflsM', 'Rados', 'd', 'daad', 'rdfls', '29/06/1997', 'reuche@yahoo.com', 'pbkdf2_sha256$30000$8G3zhKamqVD0$Fo5tUoRXfz77jVLVRxRmGpJIccy85BmbUepBE/CkG7o=', 'M', 4576124333);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_rahulM', 'Rahul', '', 'Mohan', 'rahul', '29/06/1997', 'rahul97mohan@gmail.com', 'pbkdf2_sha256$30000$5phkgbzaPJ4c$y92O14WFYuaLgaUb/uBFoh/qLZVKNkHBk9cWYflmbqM=', 'M', 8762450421);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_JirenM', 'Jiren', '', 'Mathur', 'Jiren', '25/02/1997', 'Jiren@gmail.com', 'pbkdf2_sha256$30000$4wWJquJhF4L9$kECS87ajS6TJ8D2LiwyVppDhRZlzjDlcmHYM72vUPx4=', 'M', 7689451234);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_mattM', 'Mathews', '', 'Bhat', 'matt', '29/06/1997', 'mathew@gmail.com', 'pbkdf2_sha256$30000$AHBoQtXLwPZy$lM2yKopM/oMyYyViJOEyp+kr4BsnNB2MbpzaB2rwhvg=', 'M', 8145673908);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_rgbhatF', 'Rgbhat', '', '', 'rgbhat', '23/07/1997', 'rgbhat@gmail.com', 'pbkdf2_sha256$30000$tHCgezxpSJar$MjoULSbYgH+S3KGcVoCMH1sw7+rzgiLdE6caccQm2Ws=', 'F', 5656588984);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_DonM', 'Rajat', 'N', 'Nigam', 'Don', '1/07/1996', 'rjrajat07@gmail.com', 'pbkdf2_sha256$30000$OgrYCBSWXLza$wMMISAgPrfKVf+7j9Z1RUTOL5TSpwis/OQubZA+EIAY=', 'M', 9845512341);
+INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob, email_id, password, gender, phone) VALUES ('User_priyaF', 'priyanka', '', '', 'priya', '23/03/1997', 'prinks123@gmail.com', 'pbkdf2_sha256$30000$jvXsh2Ed3aiS$O1gHtUmaOug0O9rx3O+mocFMW+W33SmuZ9j3YG5oMug=', 'F', 987654321);
 
 
 --
@@ -1571,11 +1471,11 @@ INSERT INTO blog_userprofile (u_id, first_name, m_init, last_name, username, dob
 -- Data for Name: blog_workshop; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
-INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop1', 'Advanced Photography', 250.00, '1/1/2018', '3 days', 'pixels');
 INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop2', 'Digital Photography 1', 499.00, '13/03/2018', '1 day', 'pixels');
-INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop3', 'Night Photography', 349.00, '15/08/2017', '3 days', 'photoX');
 INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop4', 'B&W Film Photo II', 299.00, '28/07/2017', '2 days 12:00:00', 'piccasa');
 INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop5', 'Professional Strategies Photo', 399.00, '28/02/2018', '1 day', 'da vinci');
+INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop1', 'Advanced Photography', 250.00, '1/4/2018', '3 days', 'pixels');
+INSERT INTO blog_workshop (w_id, name, price, start_date, duration, organisation) VALUES ('wshop3', 'Night Photography', 349.00, '1/04/2017', '3 days', 'photoX');
 
 
 --
@@ -1861,13 +1761,34 @@ INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_fl
 INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (252, '2017-03-20 08:20:55.311769+00', '4', 'Feature 4', 1, '[{"added": {}}]', 5, 1);
 INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (253, '2017-03-20 08:21:04.997083+00', '5', 'Feature 5', 1, '[{"added": {}}]', 5, 1);
 INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (254, '2017-03-20 08:21:15.712838+00', '6', 'Feature 6', 1, '[{"added": {}}]', 5, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (255, '2017-03-20 18:06:43.615367+00', 'plan3', 'Photo Journalism', 3, '', 14, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (256, '2017-03-20 18:21:11.899221+00', 'ph12', 'Photo ph12', 1, '[{"added": {}}]', 10, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (257, '2017-03-20 18:21:26.845892+00', 'ph12', 'Photo ph12', 2, '[{"changed": {"fields": ["camera_id"]}}]', 10, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (258, '2017-04-02 06:40:36.288573+00', 'user11', 'Niriksha  Kunder', 2, '[{"changed": {"fields": ["m_init"]}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (259, '2017-04-02 06:41:45.405834+00', 'user06', 'Mary N Crasto', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (260, '2017-04-03 09:55:42.165828+00', 'wshop1', 'Advanced Photography', 2, '[{"changed": {"fields": ["start_date"]}}]', 17, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (261, '2017-04-03 09:55:42.370031+00', 'wshop1', 'Advanced Photography', 2, '[]', 17, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (262, '2017-04-03 09:55:57.70025+00', 'wshop3', 'Night Photography', 2, '[{"changed": {"fields": ["start_date"]}}]', 17, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (263, '2017-04-09 09:17:25.508007+00', 'User_rishi', 'Rishi  ', 1, '[{"added": {}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (264, '2017-04-09 09:20:37.818718+00', 'User_rishix', 'Rishi S ', 1, '[{"added": {}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (265, '2017-04-09 09:24:43.551567+00', 'User_rishi', 'Rishikesh  ', 1, '[{"added": {}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (266, '2017-04-09 09:26:54.968275+00', 'User_rishiM', 'don  ', 1, '[{"added": {}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (267, '2017-04-09 09:27:12.308367+00', 'User_rishix', 'Rishi S ', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (268, '2017-04-09 09:27:12.350318+00', 'User_rishiM', 'don  ', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (269, '2017-04-09 09:27:12.361334+00', 'User_rishi', 'Rishikesh  ', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (270, '2017-04-09 15:05:58.245672+00', 'User_rdflsM', 'Rados d daad', 1, '[{"added": {}}]', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (271, '2017-04-10 09:07:04.920684+00', 'user12', 'Rajat  Nigam', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (272, '2017-04-10 09:14:33.340926+00', 'ph01', 'Photo ph01', 1, '[{"added": {}}]', 10, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (273, '2017-04-10 09:18:03.736203+00', 'User_sanjuM', 'Sanjana  M', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (274, '2017-04-10 09:26:26.568341+00', 'User_pbF', 'priya  badrinath', 3, '', 7, 1);
+INSERT INTO django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) VALUES (275, '2017-04-10 09:51:34.308031+00', 'user15', 'Prateek  Mohan', 3, '', 7, 1);
 
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: rishabh
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 254, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 275, true);
 
 
 --
@@ -1931,19 +1852,23 @@ INSERT INTO django_migrations (id, app, name, applied) VALUES (16, 'blog', '0003
 INSERT INTO django_migrations (id, app, name, applied) VALUES (17, 'blog', '0004_auto_20170319_1812', '2017-03-19 18:13:02.231071+00');
 INSERT INTO django_migrations (id, app, name, applied) VALUES (18, 'blog', '0005_auto_20170319_1943', '2017-03-19 19:43:07.885699+00');
 INSERT INTO django_migrations (id, app, name, applied) VALUES (19, 'blog', '0005_auto_20170320_0514', '2017-03-20 05:15:11.056427+00');
+INSERT INTO django_migrations (id, app, name, applied) VALUES (20, 'blog', '0006_auto_20170409_0920', '2017-04-09 09:20:28.357847+00');
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: rishabh
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 19, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 20, true);
 
 
 --
 -- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: rishabh
 --
 
+INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('2gewcoaaac28v7ogabklvocgggunpfk9', 'ZDI3Njg3YmYzZTIwZGNiODZkZTA0NTQxZjJiZjg1MmUzNzM0NjQ3MTp7Il9hdXRoX3VzZXJfaGFzaCI6IjhiMjI2ZWY2MmJiNmMxZGRkNDFiMzhkZGE5NWNjOTdkNDM3ZjRiZWQiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2017-04-17 09:55:19.221037+00');
+INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('n4eoaabc23kx5zdsw66ac5o45oqht4hs', 'MTQxNDg5NWExOTcyMDViODZhMGVlYzE2NThiMmMxZmE2MWEyODM0Yzp7Il9hdXRoX3VzZXJfaGFzaCI6IjhiMjI2ZWY2MmJiNmMxZGRkNDFiMzhkZGE5NWNjOTdkNDM3ZjRiZWQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=', '2017-04-23 09:23:59.592492+00');
+INSERT INTO django_session (session_key, session_data, expire_date) VALUES ('duqy77gfxr2p71pn5a7zemnflz09vhri', 'YmM0Y2Q3Y2ViZWIwZjYwYzMwNzNjOWEwZjA0MzAzOTQ0ZWYxZGU0NDp7Il9hdXRoX3VzZXJfaGFzaCI6IjhiMjI2ZWY2MmJiNmMxZGRkNDFiMzhkZGE5NWNjOTdkNDM3ZjRiZWQiLCJ1c2VybmFtZSI6InByaXlhIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJsb2dnZWRfaW4iOnRydWUsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=', '2017-04-24 09:52:35.141011+00');
 
 
 --
@@ -2048,22 +1973,6 @@ ALTER TABLE ONLY auth_user
 
 ALTER TABLE ONLY blog_article
     ADD CONSTRAINT blog_article_pkey PRIMARY KEY (article_id);
-
-
---
--- Name: blog_belongsto_photo_id_id_a7706f25_uniq; Type: CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_belongsto
-    ADD CONSTRAINT blog_belongsto_photo_id_id_a7706f25_uniq UNIQUE (photo_id_id, gen_id_id);
-
-
---
--- Name: blog_belongsto_pkey; Type: CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_belongsto
-    ADD CONSTRAINT blog_belongsto_pkey PRIMARY KEY (bt_id);
 
 
 --
@@ -2370,34 +2279,6 @@ CREATE INDEX blog_article_photo_id_id_78cd5401_like ON blog_article USING btree 
 --
 
 CREATE INDEX blog_article_user_id_id_0de48a05_like ON blog_article USING btree (user_id_id varchar_pattern_ops);
-
-
---
--- Name: blog_belongsto_813ff5d7; Type: INDEX; Schema: public; Owner: rishabh
---
-
-CREATE INDEX blog_belongsto_813ff5d7 ON blog_belongsto USING btree (gen_id_id);
-
-
---
--- Name: blog_belongsto_86ac172d; Type: INDEX; Schema: public; Owner: rishabh
---
-
-CREATE INDEX blog_belongsto_86ac172d ON blog_belongsto USING btree (photo_id_id);
-
-
---
--- Name: blog_belongsto_gen_id_id_e777e154_like; Type: INDEX; Schema: public; Owner: rishabh
---
-
-CREATE INDEX blog_belongsto_gen_id_id_e777e154_like ON blog_belongsto USING btree (gen_id_id varchar_pattern_ops);
-
-
---
--- Name: blog_belongsto_photo_id_id_82f9e2cc_like; Type: INDEX; Schema: public; Owner: rishabh
---
-
-CREATE INDEX blog_belongsto_photo_id_id_82f9e2cc_like ON blog_belongsto USING btree (photo_id_id varchar_pattern_ops);
 
 
 --
@@ -2863,219 +2744,203 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: blog_article_photo_id_id_78cd5401_fk_blog_photo_photo_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_article_photo_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_article
-    ADD CONSTRAINT blog_article_photo_id_id_78cd5401_fk_blog_photo_photo_id FOREIGN KEY (photo_id_id) REFERENCES blog_photo(photo_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_article_photo_id_id_fkey FOREIGN KEY (photo_id_id) REFERENCES blog_photo(photo_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_article_user_id_id_0de48a05_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_article_user_id_id_0de48a05_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_article
-    ADD CONSTRAINT blog_article_user_id_id_0de48a05_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_article_user_id_id_0de48a05_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_belongsto_gen_id_id_e777e154_fk_blog_genre_gen_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_belongsto
-    ADD CONSTRAINT blog_belongsto_gen_id_id_e777e154_fk_blog_genre_gen_id FOREIGN KEY (gen_id_id) REFERENCES blog_genre(gen_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_belongsto_photo_id_id_82f9e2cc_fk_blog_photo_photo_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_belongsto
-    ADD CONSTRAINT blog_belongsto_photo_id_id_82f9e2cc_fk_blog_photo_photo_id FOREIGN KEY (photo_id_id) REFERENCES blog_photo(photo_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_camera_user_id_id_3d635ff0_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_camera_user_id_id_3d635ff0_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_camera
-    ADD CONSTRAINT blog_camera_user_id_id_3d635ff0_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_camera_user_id_id_3d635ff0_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_camerafeatures_camera_id_id_f01e68c4_fk_blog_camera_c_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_camerafeatures_camera_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_camerafeatures
-    ADD CONSTRAINT blog_camerafeatures_camera_id_id_f01e68c4_fk_blog_camera_c_id FOREIGN KEY (camera_id_id) REFERENCES blog_camera(c_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_camerafeatures_camera_id_id_fkey FOREIGN KEY (camera_id_id) REFERENCES blog_camera(c_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_comments_review_id_id_03e1a092_fk_blog_review_review_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_comments_review_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_comments
-    ADD CONSTRAINT blog_comments_review_id_id_03e1a092_fk_blog_review_review_id FOREIGN KEY (review_id_id) REFERENCES blog_review(review_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_comments_review_id_id_fkey FOREIGN KEY (review_id_id) REFERENCES blog_review(review_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_editor_p_id_id_77f75237_fk_blog_photo_photo_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_editor
-    ADD CONSTRAINT blog_editor_p_id_id_77f75237_fk_blog_photo_photo_id FOREIGN KEY (p_id_id) REFERENCES blog_photo(photo_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_editor_user_id_id_daecb098_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_editor_p_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_editor
-    ADD CONSTRAINT blog_editor_user_id_id_daecb098_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_editor_p_id_id_fkey FOREIGN KEY (p_id_id) REFERENCES blog_photo(photo_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_follows_followed_id_id_82dc6b67_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_editor_user_id_id_daecb098_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+--
+
+ALTER TABLE ONLY blog_editor
+    ADD CONSTRAINT blog_editor_user_id_id_daecb098_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_follows_followed_id_id_82dc6b67_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_follows
-    ADD CONSTRAINT blog_follows_followed_id_id_82dc6b67_fk_blog_userprofile_u_id FOREIGN KEY (followed_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_follows_followed_id_id_82dc6b67_fk FOREIGN KEY (followed_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_follows_follower_id_id_a656b589_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_follows_follower_id_id_a656b589_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_follows
-    ADD CONSTRAINT blog_follows_follower_id_id_a656b589_fk_blog_userprofile_u_id FOREIGN KEY (follower_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_follows_follower_id_id_a656b589_fk FOREIGN KEY (follower_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_intrested_in_genre_id_id_ecfefcec_fk_blog_genre_gen_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_intrested_in
-    ADD CONSTRAINT blog_intrested_in_genre_id_id_ecfefcec_fk_blog_genre_gen_id FOREIGN KEY (genre_id_id) REFERENCES blog_genre(gen_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_intrested_in_user_id_id_e9f1c745_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_intrested_in_genre_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_intrested_in
-    ADD CONSTRAINT blog_intrested_in_user_id_id_e9f1c745_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_intrested_in_genre_id_id_fkey FOREIGN KEY (genre_id_id) REFERENCES blog_genre(gen_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_participates__user_id_id_85275f4c_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_intrested_in_user_id_id_e9f1c745_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+--
+
+ALTER TABLE ONLY blog_intrested_in
+    ADD CONSTRAINT blog_intrested_in_user_id_id_e9f1c745_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_participates_in_user_id_id_85275f4c_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_participates_in
-    ADD CONSTRAINT blog_participates__user_id_id_85275f4c_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_participates_in_user_id_id_85275f4c_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_participates_in_w_id_id_627d0574_fk_blog_workshop_w_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_participates_in_w_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_participates_in
-    ADD CONSTRAINT blog_participates_in_w_id_id_627d0574_fk_blog_workshop_w_id FOREIGN KEY (w_id_id) REFERENCES blog_workshop(w_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_participates_in_w_id_id_fkey FOREIGN KEY (w_id_id) REFERENCES blog_workshop(w_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_photo_camera_id_id_a2487ca2_fk_blog_camera_c_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_photo
-    ADD CONSTRAINT blog_photo_camera_id_id_a2487ca2_fk_blog_camera_c_id FOREIGN KEY (camera_id_id) REFERENCES blog_camera(c_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_photo_gen_id_id_e6ac5cbd_fk_blog_genre_gen_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_photo_camera_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_photo
-    ADD CONSTRAINT blog_photo_gen_id_id_e6ac5cbd_fk_blog_genre_gen_id FOREIGN KEY (gen_id_id) REFERENCES blog_genre(gen_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_photo_camera_id_id_fkey FOREIGN KEY (camera_id_id) REFERENCES blog_camera(c_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_photo_user_id_id_a7d458b9_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_photo_gen_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_photo
-    ADD CONSTRAINT blog_photo_user_id_id_a7d458b9_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_photo_gen_id_id_fkey FOREIGN KEY (gen_id_id) REFERENCES blog_genre(gen_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_plan_features_plan_id_id_506bee29_fk_blog_plan_plan_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_photo_user_id_id_a7d458b9_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+--
+
+ALTER TABLE ONLY blog_photo
+    ADD CONSTRAINT blog_photo_user_id_id_a7d458b9_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_plan_features_plan_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_plan_features
-    ADD CONSTRAINT blog_plan_features_plan_id_id_506bee29_fk_blog_plan_plan_id FOREIGN KEY (plan_id_id) REFERENCES blog_plan(plan_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_plan_features_plan_id_id_fkey FOREIGN KEY (plan_id_id) REFERENCES blog_plan(plan_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_review_about_art_id_id_e39d2a99_fk_blog_article_article_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_review_about
-    ADD CONSTRAINT blog_review_about_art_id_id_e39d2a99_fk_blog_article_article_id FOREIGN KEY (art_id_id) REFERENCES blog_article(article_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_review_about_p_id_id_5074404b_fk_blog_photo_photo_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_review_about_art_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_review_about
-    ADD CONSTRAINT blog_review_about_p_id_id_5074404b_fk_blog_photo_photo_id FOREIGN KEY (p_id_id) REFERENCES blog_photo(photo_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_review_about_art_id_id_fkey FOREIGN KEY (art_id_id) REFERENCES blog_article(article_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_review_about_rev_id_id_2e4240bc_fk_blog_review_review_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_review_about_p_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_review_about
-    ADD CONSTRAINT blog_review_about_rev_id_id_2e4240bc_fk_blog_review_review_id FOREIGN KEY (rev_id_id) REFERENCES blog_review(review_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_review_about_p_id_id_fkey FOREIGN KEY (p_id_id) REFERENCES blog_photo(photo_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_review_user_id_id_df7a384e_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_review_about_rev_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+--
+
+ALTER TABLE ONLY blog_review_about
+    ADD CONSTRAINT blog_review_about_rev_id_id_fkey FOREIGN KEY (rev_id_id) REFERENCES blog_review(review_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_review_user_id_id_df7a384e_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_review
-    ADD CONSTRAINT blog_review_user_id_id_df7a384e_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_review_user_id_id_df7a384e_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_subscribes_to_plan_id_id_5010bec7_fk_blog_plan_plan_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
---
-
-ALTER TABLE ONLY blog_subscribes_to
-    ADD CONSTRAINT blog_subscribes_to_plan_id_id_5010bec7_fk_blog_plan_plan_id FOREIGN KEY (plan_id_id) REFERENCES blog_plan(plan_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: blog_subscribes_to_user_id_id_491e37d8_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_subscribes_to_plan_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_subscribes_to
-    ADD CONSTRAINT blog_subscribes_to_user_id_id_491e37d8_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_subscribes_to_plan_id_id_fkey FOREIGN KEY (plan_id_id) REFERENCES blog_plan(plan_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_video_tutoria_user_id_id_544e49c4_fk_blog_userprofile_u_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_subscribes_to_user_id_id_491e37d8_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+--
+
+ALTER TABLE ONLY blog_subscribes_to
+    ADD CONSTRAINT blog_subscribes_to_user_id_id_491e37d8_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: blog_video_tutorials_user_id_id_544e49c4_fk; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_video_tutorials
-    ADD CONSTRAINT blog_video_tutoria_user_id_id_544e49c4_fk_blog_userprofile_u_id FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_video_tutorials_user_id_id_544e49c4_fk FOREIGN KEY (user_id_id) REFERENCES blog_userprofile(u_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: blog_workshop_requiremen_w_id_id_4e7f4633_fk_blog_workshop_w_id; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
+-- Name: blog_workshop_requirements_w_id_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: rishabh
 --
 
 ALTER TABLE ONLY blog_workshop_requirements
-    ADD CONSTRAINT blog_workshop_requiremen_w_id_id_4e7f4633_fk_blog_workshop_w_id FOREIGN KEY (w_id_id) REFERENCES blog_workshop(w_id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT blog_workshop_requirements_w_id_id_fkey FOREIGN KEY (w_id_id) REFERENCES blog_workshop(w_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 
 
 --
